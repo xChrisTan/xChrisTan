@@ -1,78 +1,84 @@
-<h1 align="center">Hi, I'm Christopher 👋</h1>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg">
+  <img alt="Christopher Tan, CX Operations Manager, B2B SaaS, Southeast Asia" src="assets/banner-light.svg" width="100%">
+</picture>
 
 <p align="center">
-  I like trying out new things — especially when it comes to tech and projects. :)
+  <b>I run multi-country customer support operations, and I build the data, automation and AI tooling behind them.</b>
+</p>
+<p align="center">
+  CX Operations Manager · B2B SaaS · Malaysia, the Philippines and Thailand<br>
+  <sub>COPC Certified · Lean Six Sigma Black Belt · MBA (2026)</sub>
 </p>
 
----
+<p align="center">
+  <sub>OPEN TO</sub><br>
+  <b>Head&nbsp;of&nbsp;Customer&nbsp;Support</b> · <b>Head&nbsp;of&nbsp;CS</b> · <b>CX&nbsp;Operations&nbsp;Manager</b> · <b>Customer&nbsp;Service&nbsp;Operations&nbsp;Manager</b><br>
+  <sub>Malaysia or remote · <a href="mailto:hello.christopher.tan@gmail.com">Email</a> · <a href="https://www.linkedin.com/in/christopher-t-34743b1a0">LinkedIn</a></sub>
+</p>
 
-### 🚀 About me
+## What I bring
 
-I build practical tools that turn messy, real-world problems into something that just runs.
-A lot of my work sits where **customer experience meets engineering** — pulling data out of
-the tools a business already uses, layering AI on top, and shipping it so non-technical
-teammates can actually use it day to day.
+- **Three-country scope.** Support, onboarding and customer-success operations across Malaysia, the Philippines and Thailand, on chat, email and voice. Before that, five years leading teams of 13–30.
+- **KPIs leadership can trust.** I own the definitions (CSAT top-2-box, FCR, volume, business-hours SLA). I found and fixed what distorted them: calls counted twice, and second surveys erasing first ratings.
+- **Escalations that close.** A daily brief gives each manager only their own cases: low ratings with the reason, upset customers, churn signals, overdue escalations. Each stays open until it's answered.
+- **AI in support, measured.** I run the weekly review of the customer-facing AI agent, with each failure routed to an owner. I mapped its 120+ workflows and built an in-house assistant to replace a paid add-on.
+- **Cost and vendor management.** I ran a seat audit that freed unused paid seats on the support platform. I'm now running the voice-platform migration: 25 numbers, ~100 seats, three countries.
+- **Knowledge management.** 750 help-centre articles translated into Thai, Filipino, Malay and Malaysian Chinese, every one machine-checked against the English source.
 
-- 🧩 I like **end-to-end builds**: frontend, API, database, automations, and deployment.
-- 🤖 I work with **AI/LLM integrations**, **speech-to-text**, and **workflow automation**.
-- 🐳 Big fan of **Docker** and self-hosting on my own hardware.
-- 📚 Always learning — happy to go down a rabbit hole to understand how something works.
+## How I run operations
 
----
+| Cadence | What happens |
+|:--|:--|
+| **Daily** | Trend brief on yesterday (day-over-day, week-over-week). Action items routed to each manager, closed when answered |
+| **Weekly** | Monday report: volume by region, KPI view for the Head of CS, top issues for training and the knowledge base, top and bottom performers. AI-agent failure review |
+| **Monthly** | OKR check-ins with the Head of Customer Service. Written coach assessments |
+| **Quality** | Closure audits that grade every conversation in the window on whether it was closed properly, with a re-contact list for the ones that weren't |
+| **Method** | COPC and Lean Six Sigma: define the metric, measure it from source data, fix the root cause, automate the check |
 
-### 🛠️ Things I work with
+## Selected builds
 
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)
-![Express](https://img.shields.io/badge/Express-000000?style=flat&logo=express&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
-![n8n](https://img.shields.io/badge/n8n-EA4B71?style=flat&logo=n8n&logoColor=white)
-![OpenAI Whisper](https://img.shields.io/badge/Whisper_STT-412991?style=flat&logo=openai&logoColor=white)
-![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=flat&logo=cloudflare&logoColor=white)
+| The problem | What I built → what changed for the team |
+|:--|:--|
+| Reports disagreed and were built by hand | **Support data platform.** Scheduled pipelines copy the support, voice and CRM systems into one place. A live ops dashboard shows per-agent scorecards and KPI bands.<br>→ Managers in three countries work from **one set of numbers**, down to the single conversation |
+| Managers had too much data and missed the cases that mattered | **Multi-agent daily brief.** Two AI builders draft it, one from chats and one from tickets. A "prosecutor" AI tries to disprove each claim and find what they missed. An auditor and rule checks gate the send, and a reviewer can edit it in a web console first.<br>→ Each manager sees **only their own action items**, and nothing posts without passing the checks |
+| AI-agent failures were reported without an owner | **AI-agent failure review.** I rebuilt the weekly analysis on our own data. Each failure cluster is diagnosed and routed to the knowledge base, product or the team.<br>→ **Every fix has a named owner** and links to the conversations behind it |
+| Contact reasons were inconsistent or missing | **AI case tagger.** Keyword rules take the clear cases, an AI model settles the rest, and the hardest cases get a deeper second pass. Results are scored against hand-labelled sets.<br>→ Reporting by contact reason is **a query, not a manual tagging exercise** |
+| Simple data questions waited on an analyst | **Ask-the-data gateway.** Ask in plain English or SQL. It's read-only, and every query is logged against the person who asked.<br>→ Questions get answered **without an analyst**, and every answer can be traced |
+| Agents dug through long playbooks mid-conversation | **Playbook Q&A.** Answers come from the internal playbooks with the source linked, refreshed nightly.<br>→ Agents get **an answer they can check** against its source |
+| Coaches depended on me for every report | **Coach toolkit.** Guided workflows coaches run themselves in Claude Code, on their own access.<br>→ Coaches can **run their reviews without me** |
 
-I regularly integrate platforms like **Intercom, Aircall, Shopify, Chargebee** and **LLM
-APIs** (via OpenRouter) into custom dashboards, reports, and automations.
+<sub>These systems run on company data, so the code stays private. I'm happy to walk through how they're designed.</sub>
 
----
+## Career
 
-### 📂 Selected projects
+| Period | Role and scope |
+|:--|:--|
+| Oct&nbsp;2025&nbsp;– now | **CX Operations Manager**<br>*B2B SaaS, Southeast Asia*<br>Support, onboarding and customer-success operations across Malaysia, the Philippines and Thailand |
+| Apr&nbsp;2024&nbsp;– Jun&nbsp;2025 | **Team Manager**<br>*FNZ*<br>Led 13 headcount. Malaysia point of contact for the global operations group; WBR/QBR owner |
+| Apr&nbsp;2021&nbsp;– Nov&nbsp;2023 | **Team Manager**<br>*Cognizant*<br>Led 2 team leads and 29 associates. RCA with action plans, glide-path planning |
+| 2020&nbsp;– 2021 | **Team Lead**<br>*Concentrix and Webhelp*<br>Led 25–30 associates on phone, email and chat |
 
-> Most of my work lives in **private repositories**. Here's a taste of what I've built —
-> happy to give a walkthrough or read-only access on request.
+## Toolbox
 
-**📊 CX Team AI Dashboard**
-A customer-experience analytics platform that unifies data from support, telephony,
-e-commerce, and billing systems (Intercom, Aircall, Shopify, Chargebee) into a single view,
-with **AI-generated insights** and **role-based access control** for different teams.
-- *Stack:* Node/Express · PostgreSQL (multi-database) · LLM insights via OpenRouter
-- *Focus:* real-time multi-source integration, secure password-gated access tiers
+| Area | Tools and methods |
+|:--|:--|
+| **Operations** | Customer support operations · customer success operations · contact centre operations · omnichannel support (chat, email, voice) · workforce management (WFM) · quality assurance (QA) · root-cause analysis (RCA) · KPI design (CSAT, FCR, SLA) · escalation management · knowledge management · vendor management · process improvement · WBR/QBR reporting · coaching and team leadership · COPC · Lean Six Sigma |
+| **Support and CX platforms** | Intercom (incl. Fin AI agent) · Aircall · TalkHub · Lark · Salesforce · Shopify |
+| **Data and automation** | SQL / PostgreSQL · dashboards and scorecards · n8n · Python · Node.js · Playwright |
+| **AI** | Claude and Claude Code · multi-agent LLM pipelines · retrieval with citations (RAG) · LLM classification · MCP · speech-to-text (Whisper) |
 
-**🎙️ CX Transcript Pipeline**
-A speech-to-text and clean-up pipeline that transcribes and validates **tens of thousands**
-of support calls and chats across multiple markets (MY / PH / TH) into a consistent,
-searchable archive.
-- *Stack:* Whisper large-v3 STT → AI-assisted validation & cleanup
-- *Scale:* 29,000+ cleaned, verified transcripts
+<details>
+<summary><b>Side projects</b> &nbsp;<sub>three personal builds</sub></summary>
+<br>
 
-**📈 Daily Operations Reports**
-A command-line toolkit that pulls daily metrics from billing, e-commerce, telephony, and
-support platforms and generates reports — wrapped in a **setup wizard friendly enough for
-non-technical teammates** to run themselves.
-- *Stack:* Node.js · API integrations (Chargebee, Shopify, Aircall, Intercom)
+- **Pocket TTS:** a local text-to-speech app that clones a voice from a short sample. Nothing leaves the machine.
+- **Scroll Area Capture:** a Chrome extension that captures the full length of whichever scrolling panel you pick.
+- **Success Tutoring portal:** a self-hosted student and tutor portal that sends weekly WhatsApp report cards.
 
-**🎓 Success Tutoring — Tutor Portal**
-A self-hosted web portal for a tutoring business: enrol students by program, track
-per-lesson progress and assessments, manage a tutor availability calendar, view KPIs, and
-issue payment receipts — all audit-logged.
-- *Stack:* vanilla-JS frontend · Node/Express + PostgreSQL API · Docker
-- *Automations:* weekly WhatsApp report cards (n8n + WAHA), receipt sending
-- *Built for non-experts:* one-command Docker setup with a full zero-to-deploy guide
+</details>
 
----
+## Get in touch
 
-### 📫 Get in touch
-
-- 📧 **hello.christopher.tan@gmail.com**
-
-<p align="center"><sub>Thanks for stopping by! ⭐</sub></p>
+**[hello.christopher.tan@gmail.com](mailto:hello.christopher.tan@gmail.com)** · **[LinkedIn](https://www.linkedin.com/in/christopher-t-34743b1a0)**
