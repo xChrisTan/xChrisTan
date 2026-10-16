@@ -4,81 +4,52 @@
   <img alt="Christopher Tan, CX Operations Manager, B2B SaaS, Southeast Asia" src="assets/banner-light.svg" width="100%">
 </picture>
 
-<p align="center">
-  <b>I run multi-country customer support operations, and I build the data, automation and AI tooling behind them.</b>
-</p>
-<p align="center">
-  CX Operations Manager · B2B SaaS · Malaysia, the Philippines and Thailand<br>
-  <sub>COPC Certified · Lean Six Sigma Black Belt · MBA (2026)</sub>
-</p>
+I run customer support operations across Malaysia, the Philippines and Thailand, and I build the tooling the team runs on: data pipelines, dashboards, AI agents and automations. Most of it runs on company data, so the repos are private. This page is what I build and how it works.
 
-<p align="center">
-  <sub>OPEN TO</sub><br>
-  <b>Head&nbsp;of&nbsp;Customer&nbsp;Support</b> · <b>Head&nbsp;of&nbsp;CS</b> · <b>CX&nbsp;Operations&nbsp;Manager</b> · <b>Customer&nbsp;Service&nbsp;Operations&nbsp;Manager</b><br>
-  <sub>Malaysia or remote · <a href="mailto:hello.christopher.tan@gmail.com">Email</a> · <a href="https://www.linkedin.com/in/christopher-t-34743b1a0">LinkedIn</a></sub>
-</p>
+## What I've built
 
-## What I bring
+**Support data platform.** Scheduled n8n pipelines mirror the support, voice and CRM systems into Postgres, and a Node dashboard reads the mirrors: per-agent scorecards, KPI bands, drill-down to the single conversation. Half the work was the definitions. I traced metrics that were quietly wrong (every call counted twice, a second survey erasing the first rating) back to the data and fixed them at the source.
+<sub>Node.js · Express · PostgreSQL · n8n · Cloudflare Tunnel + Access</sub>
 
-- **Three-country scope.** Support, onboarding and customer-success operations across Malaysia, the Philippines and Thailand, on chat, email and voice. Before that, five years leading teams of 13–30.
-- **KPIs leadership can trust.** I own the definitions (CSAT top-2-box, FCR, volume, business-hours SLA). I found and fixed what distorted them: calls counted twice, and second surveys erasing first ratings.
-- **Escalations that close.** A daily brief gives each manager only their own cases: low ratings with the reason, upset customers, churn signals, overdue escalations. Each stays open until it's answered.
-- **AI in support, measured.** I run the weekly review of the customer-facing AI agent, with each failure routed to an owner. I mapped its 120+ workflows and built an in-house assistant to replace a paid add-on.
-- **Cost and vendor management.** I ran a seat audit that freed unused paid seats on the support platform. I'm now running the voice-platform migration: 25 numbers, ~100 seats, three countries.
-- **Knowledge management.** 750 help-centre articles translated into Thai, Filipino, Malay and Malaysian Chinese, every one machine-checked against the English source.
+**Multi-agent daily brief.** Each morning it drafts every team lead's action items: low ratings with the reason pulled from the transcript, upset customers, overdue escalations. Two LLM builders draft from different sources (chats, tickets). A "prosecutor" agent then tries to disprove each claim and hunts for what they missed. An auditor and deterministic validators gate the send, and items close when someone answers them in the thread.
+<sub>Python · Claude · chat API · git-versioned state</sub>
 
-## How I run operations
+**Ask-the-data gateway + MCP server.** Ask the mirrors a question in plain English or SQL. Queries run on a read-only role, each person has their own login, and every query is logged. The same data is exposed as an MCP server, so Claude Code can query it directly.
+<sub>Node.js · PostgreSQL · MCP</sub>
 
-| Cadence | What happens |
-|:--|:--|
-| **Daily** | Trend brief on yesterday (day-over-day, week-over-week). Action items routed to each manager, closed when answered |
-| **Weekly** | Monday report: volume by region, KPI view for the Head of CS, top issues for training and the knowledge base, top and bottom performers. AI-agent failure review |
-| **Monthly** | OKR check-ins with the Head of Customer Service. Written coach assessments |
-| **Quality** | Closure audits that grade every conversation in the window on whether it was closed properly, with a re-contact list for the ones that weren't |
-| **Method** | COPC and Lean Six Sigma: define the metric, measure it from source data, fix the root cause, automate the check |
+**AI case tagger.** Nightly contact-reason tagging of support conversations. Keyword rules take the clear cases, an LLM settles the rest, and the hardest cases get a deeper second pass. Results are scored against hand-labelled sets.
+<sub>Python · Claude · PostgreSQL</sub>
 
-## Selected builds
+**AI-agent failure review.** Finds the conversations where the customer-facing AI agent failed, clusters them, diagnoses each cluster and routes the fix to its owner: help-centre content, product or the support team.
+<sub>Python · SQL · Claude</sub>
 
-| The problem | What I built → what changed for the team |
-|:--|:--|
-| Reports disagreed and were built by hand | **Support data platform.** Scheduled pipelines copy the support, voice and CRM systems into one place. A live ops dashboard shows per-agent scorecards and KPI bands.<br>→ Managers in three countries work from **one set of numbers**, down to the single conversation |
-| Managers had too much data and missed the cases that mattered | **Multi-agent daily brief.** Two AI builders draft it, one from chats and one from tickets. A "prosecutor" AI tries to disprove each claim and find what they missed. An auditor and rule checks gate the send, and a reviewer can edit it in a web console first.<br>→ Each manager sees **only their own action items**, and nothing posts without passing the checks |
-| AI-agent failures were reported without an owner | **AI-agent failure review.** I rebuilt the weekly analysis on our own data. Each failure cluster is diagnosed and routed to the knowledge base, product or the team.<br>→ **Every fix has a named owner** and links to the conversations behind it |
-| Contact reasons were inconsistent or missing | **AI case tagger.** Keyword rules take the clear cases, an AI model settles the rest, and the hardest cases get a deeper second pass. Results are scored against hand-labelled sets.<br>→ Reporting by contact reason is **a query, not a manual tagging exercise** |
-| Simple data questions waited on an analyst | **Ask-the-data gateway.** Ask in plain English or SQL. It's read-only, and every query is logged against the person who asked.<br>→ Questions get answered **without an analyst**, and every answer can be traced |
-| Agents dug through long playbooks mid-conversation | **Playbook Q&A.** Answers come from the internal playbooks with the source linked, refreshed nightly.<br>→ Agents get **an answer they can check** against its source |
-| Coaches depended on me for every report | **Coach toolkit.** Guided workflows coaches run themselves in Claude Code, on their own access.<br>→ Coaches can **run their reviews without me** |
+**Playbook Q&A.** Retrieval over internal playbooks, where every answer links the source it came from. The corpus refreshes nightly from the doc wiki.
+<sub>Node.js · retrieval with citations</sub>
 
-<sub>These systems run on company data, so the code stays private. I'm happy to walk through how they're designed.</sub>
+**Coach toolkit.** Guided Claude Code workflows that non-technical team coaches run themselves, on their own access, behind a `/menu` launcher.
+<sub>Claude Code · Python</sub>
 
-## Career
+## How I build
 
-| Period | Role and scope |
-|:--|:--|
-| Oct&nbsp;2025&nbsp;– now | **CX Operations Manager**<br>*B2B SaaS, Southeast Asia*<br>Support, onboarding and customer-success operations across Malaysia, the Philippines and Thailand |
-| Apr&nbsp;2024&nbsp;– Jun&nbsp;2025 | **Team Manager**<br>*FNZ*<br>Led 13 headcount. Malaysia point of contact for the global operations group; WBR/QBR owner |
-| Apr&nbsp;2021&nbsp;– Nov&nbsp;2023 | **Team Manager**<br>*Cognizant*<br>Led 2 team leads and 29 associates. RCA with action plans, glide-path planning |
-| 2020&nbsp;– 2021 | **Team Lead**<br>*Concentrix and Webhelp*<br>Led 25–30 associates on phone, email and chat |
+- **One source of truth.** Every number traces to a query someone else can rerun.
+- **AI output gets checked, not trusted.** Adversarial agents, deterministic validators, and a human in the loop where it matters.
+- **Fix the definition before the dashboard.** A wrong metric on a good-looking chart is worse than no chart.
+- **Built for the people who use it.** If a coach can't run it without me, it isn't finished.
+
+## Side projects
+
+- **Scroll Area Capture:** a Chrome extension that captures the full length of whichever scrolling panel you pick.
+- **Pocket TTS:** a local text-to-speech app that clones a voice from a short sample. Nothing leaves the machine.
+- **Success Tutoring portal:** a self-hosted student and tutor portal with weekly WhatsApp report cards (n8n + WAHA, Docker).
 
 ## Toolbox
 
-| Area | Tools and methods |
+| | |
 |:--|:--|
-| **Operations** | Customer support operations · customer success operations · contact centre operations · omnichannel support (chat, email, voice) · workforce management (WFM) · quality assurance (QA) · root-cause analysis (RCA) · KPI design (CSAT, FCR, SLA) · escalation management · knowledge management · vendor management · process improvement · WBR/QBR reporting · coaching and team leadership · COPC · Lean Six Sigma |
-| **Support and CX platforms** | Intercom (incl. Fin AI agent) · Aircall · TalkHub · Lark · Salesforce · Shopify |
-| **Data and automation** | SQL / PostgreSQL · dashboards and scorecards · n8n · Python · Node.js · Playwright |
-| **AI** | Claude and Claude Code · multi-agent LLM pipelines · retrieval with citations (RAG) · LLM classification · MCP · speech-to-text (Whisper) |
-
-<details>
-<summary><b>Side projects</b> &nbsp;<sub>three personal builds</sub></summary>
-<br>
-
-- **Pocket TTS:** a local text-to-speech app that clones a voice from a short sample. Nothing leaves the machine.
-- **Scroll Area Capture:** a Chrome extension that captures the full length of whichever scrolling panel you pick.
-- **Success Tutoring portal:** a self-hosted student and tutor portal that sends weekly WhatsApp report cards.
-
-</details>
-
-## Get in touch
+| **Languages** | JavaScript / Node.js · Python · SQL · Bash |
+| **Data and automation** | PostgreSQL · n8n · Playwright · launchd |
+| **AI** | Claude and Claude Code · multi-agent LLM pipelines · retrieval with citations · MCP · Whisper |
+| **Infra** | Cloudflare Tunnel + Access · Tailscale · Docker · self-hosting on Apple Silicon |
+| **Platforms I've integrated** | Intercom · Aircall · TalkHub · Lark · Salesforce · Shopify |
 
 **[hello.christopher.tan@gmail.com](mailto:hello.christopher.tan@gmail.com)** · **[LinkedIn](https://www.linkedin.com/in/christopher-t-34743b1a0)**
